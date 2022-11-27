@@ -1,0 +1,145 @@
+executor.py [LINE:362] #INFO     [2022-11-27 23:58:00,865] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-27 23:58:00,986] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-27 23:58:00,987] Start polling.
+base_events.py [LINE:1729] #ERROR    [2022-11-27 23:58:05,844] Task exception was never retrieved
+future: <Task finished name='Task-9' coro=<Dispatcher._process_polling_updates() done, defined at C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=AttributeError("'CallbackQuery' object has no attribute 'chat'")>
+Traceback (most recent call last):
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 283, in process_update
+    return await self.callback_query_handlers.notify(update.callback_query)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Foxy\PycharmProjects\Tbot\bot\main.py", line 78, in honda
+    await bot.send_message(message.chat.id, f'{i}', parse_mode='MarkdownV2')
+AttributeError: 'CallbackQuery' object has no attribute 'chat'
+base_events.py [LINE:1729] #ERROR    [2022-11-27 23:58:08,346] Task exception was never retrieved
+future: <Task finished name='Task-16' coro=<Dispatcher._process_polling_updates() done, defined at C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=AttributeError("'CallbackQuery' object has no attribute 'chat'")>
+Traceback (most recent call last):
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 283, in process_update
+    return await self.callback_query_handlers.notify(update.callback_query)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Foxy\PycharmProjects\Tbot\bot\main.py", line 78, in honda
+    await bot.send_message(message.chat.id, f'{i}', parse_mode='MarkdownV2')
+AttributeError: 'CallbackQuery' object has no attribute 'chat'
+base_events.py [LINE:1729] #ERROR    [2022-11-27 23:58:15,914] Task exception was never retrieved
+future: <Task finished name='Task-23' coro=<Dispatcher._process_polling_updates() done, defined at C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=AttributeError("'CallbackQuery' object has no attribute 'chat'")>
+Traceback (most recent call last):
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 283, in process_update
+    return await self.callback_query_handlers.notify(update.callback_query)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Foxy\PycharmProjects\Tbot\bot\main.py", line 78, in honda
+    await bot.send_message(message.chat.id, f'{i}')
+AttributeError: 'CallbackQuery' object has no attribute 'chat'
+dispatcher.py [LINE:433] #INFO     [2022-11-27 23:58:53,658] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-27 23:58:53,659] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-27 23:58:55,656] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-27 23:58:55,791] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-27 23:58:55,792] Start polling.
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:00:01,680] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:00:01,681] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-28 00:00:03,787] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-28 00:00:03,913] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-28 00:00:03,913] Start polling.
+base_events.py [LINE:1729] #ERROR    [2022-11-28 00:00:09,119] Task exception was never retrieved
+future: <Task finished name='Task-13' coro=<Dispatcher._process_polling_updates() done, defined at C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=AttributeError("'CallbackQuery' object has no attribute 'chat'")>
+Traceback (most recent call last):
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 283, in process_update
+    return await self.callback_query_handlers.notify(update.callback_query)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Foxy\PycharmProjects\Tbot\bot\main.py", line 78, in honda
+    await bot.send_message(message.chat.id, f'{i}')
+AttributeError: 'CallbackQuery' object has no attribute 'chat'
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:00:28,976] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:00:28,977] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-28 00:00:31,004] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-28 00:00:31,128] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-28 00:00:31,128] Start polling.
+base_events.py [LINE:1729] #ERROR    [2022-11-28 00:00:35,699] Task exception was never retrieved
+future: <Task finished name='Task-14' coro=<Dispatcher._process_polling_updates() done, defined at C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'message' is not defined")>
+Traceback (most recent call last):
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 283, in process_update
+    return await self.callback_query_handlers.notify(update.callback_query)
+  File "C:\Program Files\Python310\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Foxy\PycharmProjects\Tbot\bot\main.py", line 78, in honda
+    await bot.send_message(message.chat.id, f'{i}')
+NameError: name 'message' is not defined
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:04:13,033] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:04:13,034] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-28 00:04:15,167] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-28 00:04:15,297] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-28 00:04:15,297] Start polling.
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:06:24,184] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:06:24,185] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-28 00:06:26,271] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-28 00:06:26,408] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-28 00:06:26,409] Start polling.
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:07:24,872] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:07:24,872] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-28 00:07:26,976] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-28 00:07:27,107] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-28 00:07:27,107] Start polling.
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:07:37,727] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:07:37,728] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-28 00:07:42,893] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-28 00:07:43,037] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-28 00:07:43,038] Start polling.
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:17:33,508] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:17:33,509] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-28 00:17:37,266] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-28 00:17:37,402] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-28 00:17:37,403] Start polling.
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:18:08,867] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:18:08,868] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-28 00:18:13,553] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-28 00:18:13,687] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-28 00:18:13,687] Start polling.
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:18:20,767] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:18:20,768] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-28 00:18:22,865] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-28 00:18:22,997] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-28 00:18:22,998] Start polling.
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:18:39,255] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:18:39,256] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-28 00:18:41,377] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-28 00:18:41,505] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-28 00:18:41,505] Start polling.
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:20:22,700] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:20:22,701] Goodbye!
+executor.py [LINE:362] #INFO     [2022-11-28 00:20:24,717] Bot: Evil Otter [@Evil_Otter_bot]
+executor.py [LINE:358] #WARNING  [2022-11-28 00:20:24,936] Updates were skipped successfully.
+dispatcher.py [LINE:358] #INFO     [2022-11-28 00:20:24,936] Start polling.
+dispatcher.py [LINE:433] #INFO     [2022-11-28 00:23:25,734] Stop polling...
+executor.py [LINE:329] #WARNING  [2022-11-28 00:23:25,735] Goodbye!

@@ -1,8 +1,12 @@
 from aiogram import Bot, executor, types
+import asyncio
 import logging
+from aiogram.types import ReplyKeyboardRemove, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, \
+    InlineKeyboardButton
 from aiogram.dispatcher import Dispatcher
 from aiogram.dispatcher.filters import Command
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from aiogram.dispatcher.filters.state import StatesGroup, State
 from bot import config, keyboard
 import re
 import json
@@ -17,7 +21,13 @@ logging.basicConfig(
     # указываем уровень логирования
     level=logging.INFO,
     # указываем формат сохранения логов
-    format=u'%(filename)s [LINE:%(lineno)d] #%(levelname)-8s [%(asctime)s] %(message)s')
+    format=u'%(filename)s [LINE:%(lineno)d] #%(levelname)-8s '
+           u'[%(asctime)s] %(message)s')
+
+
+class Me_info(StatesGroup):
+    Q1 = State()  # задаем состояние 1
+    Q2 = State()  # задаем состояние 2
 
 
 @dp.message_handler(Command('start'), state=None)
@@ -71,14 +81,11 @@ async def cancel(call: types.CallbackQuery):
                                 text="Вы вернулись в главное меню")
 
 
-@dp.callback_query_handler(text_contains='honda')
-async def honda(call: types.CallbackQuery):
-    cards = honda_find.honda
-    for i in cards:
-
-        await bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
-                                    text=f"{i}\n",
-                                    parse_mode='Markdown')
+@dp.message_handler(text_contains='honda')
+async def honda(message: types.Message):
+    # cards = honda_find.honda
+    for i in range(10):
+        await bot.send_message(message.chat.id, f'{i}')
 
 
 if __name__ == "__main__":
