@@ -6,7 +6,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from bot import config, keyboard
 import re
 import json
-import parser
+from parser import honda_find
 
 storage = MemoryStorage()  # FSM
 bot = Bot(token=config.botkey, parse_mode=types.ParseMode.HTML)
@@ -73,26 +73,12 @@ async def cancel(call: types.CallbackQuery):
 
 @dp.callback_query_handler(text_contains='honda')
 async def honda(call: types.CallbackQuery):
-    honda = {}
-    with open('cars.json', newline='', encoding='UTF-8') as file:
-        data = json.load(file)
-        for i in data:
-            if re.findall(r'https+.+/honda/+.+\d{9}', str(i)):
-                honda.update(i)
-    output_honda = []
-    # for it in honda:
-    #     for i, j in it.items():
-    #         output_honda += str(i) * (j.index(it) + 1)
-    #         print(output_honda)
-    for i, j in honda.items():
-        # print(i, j)
-        # for j in honda.items():
-        output_honda.append(i)
-        output_honda.append(j)
-            await bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
-                                        text=f"{str(output_honda)}\n",
-                                        parse_mode='Markdown')
-    print(honda.keys())
+    cards = honda_find.honda
+    for i in cards:
+
+        await bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
+                                    text=f"{i}\n",
+                                    parse_mode='Markdown')
 
 
 if __name__ == "__main__":

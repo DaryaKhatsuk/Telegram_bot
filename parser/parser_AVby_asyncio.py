@@ -16,7 +16,6 @@ class ParserAV:
         :self.HEADERS: искать в главном домене раздела "сеть"/"network" консоли браузера.
         """
         self.JSON = 'cars.json'
-        self.CSV = 'cars.csv'
         self.HOST = 'https://av.by/'
         self.URL = 'https://moto.av.by/filter?category_type=1'
         self.HEADERS = {
@@ -66,12 +65,12 @@ class ParserAV:
         """
         :return: запись в json и csv файлы.
         """
-        with open(self.JSON, 'w', newline='', encoding='UTF-8') as file:
+        with open('C:/Users/Foxy/PycharmProjects/Tbot/' + self.JSON, 'w', newline='', encoding='UTF-8') as file:
             wordbook = {}
             sc = 1
             for item in self.cards:
                 wordbook.update(
-                        item
+                    item
                 )
                 sc += 1
             json.dump(self.cards, file, indent=4, ensure_ascii=False)
@@ -90,7 +89,7 @@ class ParserAV:
         """
         async with aiohttp.ClientSession() as session:
             session_request = await session.get(url=self.URL, headers=self.HEADERS)
-            counter = 1
+            counter = 118
             while session_request.status == 200:
                 session_request = await session.get(url=self.URL + '&page=' + str(counter))
                 print(f'Parsing page {counter}')

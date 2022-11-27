@@ -1,7 +1,7 @@
 import json
 import re
 
-with open('parser/cars.json', newline='', encoding='UTF-8') as file:
+with open('cars.json', newline='', encoding='UTF-8') as file:
     data = json.load(file)
     honda = {}
     for i in data:
