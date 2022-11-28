@@ -8,9 +8,6 @@ from aiogram.dispatcher.filters import Command
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from bot import config, keyboard
-import re
-import json
-from parser import honda_find
 
 storage = MemoryStorage()  # FSM
 bot = Bot(token=config.botkey, parse_mode=types.ParseMode.HTML)
@@ -46,6 +43,31 @@ async def welcome(message):
                            reply_markup=keyboard.start, parse_mode='Markdown')
 
 
+@dp.message_handler(commands='rassilka')
+async def rassilka(message):
+    if message.chat.id == config.admin:
+        await bot.send_message(message.chat.id, f'*Рассылка началась*'
+                                                f'\n*Бот оповестит когда закончит*', parse_mode='Markdown')
+        receive_users, block_users = 0, 0
+        joinedFile = open('user.txt', 'r')
+        joinedUsers = set()
+        print('open')
+        for line in joinedFile:
+            joinedUsers.add(line.strip())
+        joinedFile.close()
+        for user in joinedUsers:
+            try:
+                print('wait')
+                await bot.send_photo(user, open('photo.png', 'rb'))
+                receive_users += 1
+            except:
+                block_users += 1
+            await asyncio.sleep(0.4)
+        await bot.send_message(message.chat.id,  f'*Рассылка закончилась*\n'
+                                                 f'получили сообщение: *{receive_users}*\n'
+                                                 f'заблокировали бота: *{block_users}*', parse_mode='Markdown')
+
+
 @dp.message_handler(commands='info')
 async def cmd_test1(message: types.Message):
     await message.reply("I'm evil")
@@ -79,13 +101,6 @@ async def join(call: types.CallbackQuery):
 async def cancel(call: types.CallbackQuery):
     await bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                 text="Вы вернулись в главное меню")
-
-
-@dp.message_handler(text_contains='honda')
-async def honda(message: types.Message):
-    # cards = honda_find.honda
-    for i in range(10):
-        await bot.send_message(message.chat.id, f'{i}')
 
 
 if __name__ == "__main__":
