@@ -81,9 +81,6 @@ async def get_message(message):
     if message.text == 'Statistic':
         await bot.send_message(message.chat.id, text=f'{message.chat.first_name}, do you want see static?',
                                reply_markup=keyboard.stats_keyb, parse_mode='Markdown')
-    if message.text == 'Motorcycles':
-        await bot.send_message(message.chat.id, text=f'What brand of motorcycles do you want to see?',
-                               reply_markup=keyboard.motorcycles_keyb, parse_mode='Markdown')
 
 
 @dp.callback_query_handler(text_contains='join')
