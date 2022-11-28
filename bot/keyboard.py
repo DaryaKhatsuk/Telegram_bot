@@ -12,6 +12,3 @@ start.add(stats, info, motorcycles)
 stats_keyb = InlineKeyboardMarkup()
 stats_keyb.add(InlineKeyboardButton(f'yes', callback_data='join'))
 stats_keyb.add(InlineKeyboardButton(f'no', callback_data='cancel'))
-
-motorcycles_keyb = InlineKeyboardMarkup()
-motorcycles_keyb.add(InlineKeyboardButton(f'Honda', callback_data='honda'))
