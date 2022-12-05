@@ -1,3 +1,5 @@
+from typing import Optional
+
 from aiogram import Bot, executor, types
 import asyncio
 import logging
@@ -9,6 +11,8 @@ from aiogram.dispatcher.filters import Command
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from bot import config, keyboard
+import os
+from io import BytesIO
 
 storage = MemoryStorage()  # FSM
 bot = Bot(token=config.botkey, parse_mode=types.ParseMode.HTML)
@@ -169,10 +173,25 @@ async def get_message(message):
         await bot.send_message(message.chat.id, text='Выберите вариант', reply_markup=keyboard.pols_keyb,
                                parse_mode='Markdown')
     if message.text == 'Добавить фото':
-        await bot.send_message(message.chat.id, text='Вставьте фото', )
+        await bot.send_message(message.chat.id, text='Вставьте фото для сохранения')
+        find_type = await bot.send_photo(message.chat.id, message)
+        # print(find_type)
+        # file_photo = bot.send_photo(find_type)
+        full = open('photo_user/' + str(file_photo), 'rb')
+        full.close()
+        print(1)
+        # with open('photo_user', 'rb') as file_safe:
+        #     print(2)
+        #     file_safe.write(file_photo)
+        #     print(3)
+        # await bot.send_message(message.chat.id, text='Фото сохранено')
+
     if message.text == 'Показать фото из галереи':
+        list_photo = os.listdir('photo_user')
         await bot.send_message(message.chat.id, text='Ваши фото')
-        await
+        for i in list_photo:
+            await bot.send_photo(message.chat.id, open('photo_user/' + i, 'rb'))
+        await bot.send_message(message.chat.id, text='Все фото показаны')
 
 
 if __name__ == "__main__":
