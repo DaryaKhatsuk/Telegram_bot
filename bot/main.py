@@ -177,8 +177,10 @@ async def get_message(message):
         find_type = await bot.send_photo(message.chat.id, message)
         # print(find_type)
         # file_photo = bot.send_photo(find_type)
-        full = open('photo_user/' + str(file_photo), 'rb')
-        full.close()
+        direct = os.open('photo_user',)
+
+        full = os.write('photo_user', str(find_type))
+        # full.close()
         print(1)
         # with open('photo_user', 'rb') as file_safe:
         #     print(2)
