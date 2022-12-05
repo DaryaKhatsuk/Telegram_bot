@@ -165,6 +165,14 @@ async def get_message(message):
     if message.text == 'Statistic':
         await bot.send_message(message.chat.id, text=f'{message.chat.first_name}, do you want see static?',
                                reply_markup=keyboard.stats_keyb, parse_mode='Markdown')
+    if message.text == 'Покажи пользователя':
+        await bot.send_message(message.chat.id, text='Выберите вариант', reply_markup=keyboard.pols_keyb,
+                               parse_mode='Markdown')
+    if message.text == 'Добавить фото':
+        await bot.send_message(message.chat.id, text='Вставьте фото', )
+    if message.text == 'Показать фото из галереи':
+        await bot.send_message(message.chat.id, text='Ваши фото')
+        await
 
 
 if __name__ == "__main__":
