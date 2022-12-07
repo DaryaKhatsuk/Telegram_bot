@@ -1,5 +1,3 @@
-from typing import Optional
-
 import aiogram.types.file
 from aiogram import Bot, executor, types
 import asyncio
@@ -11,9 +9,9 @@ from aiogram.dispatcher import Dispatcher
 from aiogram.dispatcher.filters import Command
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import StatesGroup, State
-import aiogram.types.file as file_path
+from random import randint
 from bot import config, keyboard
-from os import listdir, path
+from os import listdir
 
 storage = MemoryStorage()  # FSM
 bot = Bot(token=config.botkey, parse_mode=types.ParseMode.HTML)
@@ -185,39 +183,9 @@ async def get_message(message):
 
 
 @dp.message_handler(content_types='photo')
-async def get_photo(message: types.Message, state: FSMContext):
-    await state.update_data(photo_0=message.photo[-1], photo_counter=0)
-    await state.set_state('next_photo')
-
-
-@dp.message_handler(content_types=['photo'], state='next_photo')
-async def next_photo_handler(message: types.Message, state: FSMContext):
-
-    async with state.proxy() as data:
-        data['photo_counter'] += 1
-        photo_counter = data['photo_counter']
-        data[f'photo_{photo_counter}'] = message.photo[-1]
-        print(data)
-    await state.set_state('next_photo')
-
-
-@dp.message_handler(state='next_photo')
-async def not_foto_handler(message: types.Message, state: FSMContext):
-    async with state.proxy() as data:
-        print(5)
-        # for i in data:
-        #     print(i)
-        # await bot.download_file(destination=('photo_user'), aiogram.types.file.File(i))
-        # print('win')
-        with open('photo_user', 'wb') as new_file:
-            new_file.write(data)
-        await bot.send_message(message.chat.id, "Фото сохранено")
-        # await state.set_state('next_photo')
-        await bot.send_message(message.chat.id, text='Нажмите любую кнопку для сохранения фото')
-        # print(i)
-        # await bot.send_message(message.chat.id, text='Фото сохранено')
-
-    await state.finish()
+async def get_photo(message: types.Message):
+    await message.photo[-1].download(f'photo_user/{str(randint(1, 9999))}.png')
+    await bot.send_message(message.chat.id, text='Фото сохранено')
 
 
 if __name__ == "__main__":
