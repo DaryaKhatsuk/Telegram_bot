@@ -1,4 +1,3 @@
-import aiogram.types.file
 from aiogram import Bot, executor, types
 import asyncio
 import logging
