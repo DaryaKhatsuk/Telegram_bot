@@ -1,5 +1,6 @@
 from typing import Optional
 
+import aiogram.types.file
 from aiogram import Bot, executor, types
 import asyncio
 import logging
@@ -10,9 +11,9 @@ from aiogram.dispatcher import Dispatcher
 from aiogram.dispatcher.filters import Command
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import StatesGroup, State
+import aiogram.types.file as file_path
 from bot import config, keyboard
-import os
-from io import BytesIO
+from os import listdir, path
 
 storage = MemoryStorage()  # FSM
 bot = Bot(token=config.botkey, parse_mode=types.ParseMode.HTML)
@@ -162,7 +163,7 @@ async def rassilka(message):
 
 
 @dp.message_handler(content_types='text')
-async def get_message(message):
+async def get_message(message, state: FSMContext):
     if message.text == 'Inform':
         await bot.send_message(message.chat.id, text='Information!\n The bot is designed for learning!',
                                parse_mode='Markdown')
@@ -174,26 +175,59 @@ async def get_message(message):
                                parse_mode='Markdown')
     if message.text == 'Добавить фото':
         await bot.send_message(message.chat.id, text='Вставьте фото для сохранения')
-        find_type = await bot.send_photo(message.chat.id, message)
-        # print(find_type)
-        # file_photo = bot.send_photo(find_type)
-        direct = os.open('photo_user',)
-
-        full = os.write('photo_user', str(find_type))
-        # full.close()
-        print(1)
-        # with open('photo_user', 'rb') as file_safe:
-        #     print(2)
-        #     file_safe.write(file_photo)
-        #     print(3)
-        # await bot.send_message(message.chat.id, text='Фото сохранено')
-
+        await get_photo()
     if message.text == 'Показать фото из галереи':
-        list_photo = os.listdir('photo_user')
+        list_photo = listdir('photo_user')
         await bot.send_message(message.chat.id, text='Ваши фото')
         for i in list_photo:
             await bot.send_photo(message.chat.id, open('photo_user/' + i, 'rb'))
         await bot.send_message(message.chat.id, text='Все фото показаны')
+
+
+@dp.message_handler(content_types='photo')
+async def get_photo(message: types.Message, state: FSMContext):
+    await state.update_data(photo_0=message.photo[-1], photo_counter=0)
+    await state.set_state('next_photo')
+        # we are here if the second and next messages are photos
+
+
+@dp.message_handler(content_types=['photo'], state='next_photo')
+async def next_photo_handler(message: types.Message, state: FSMContext):
+    # we are here if the second and next messages are photos
+
+    async with state.proxy() as data:
+        data['photo_counter'] += 1
+        photo_counter = data['photo_counter']
+        data[f'photo_{photo_counter}'] = message.photo[-1]
+        for i in data:
+            await bot.download_file(aiogram.types.file.File, i)
+            # src = 'photo_user' + i.file_path
+            print('win')
+            # with open(src, 'wb') as new_file:
+            #     new_file.write(i.file_path)
+            # await bot.send_message(message.chat.id, "Пожалуй, я сохраню это")
+    # await state.set_state('next_photo')
+    await bot.send_message(message.chat.id, text='Нажмите любую кнопку для сохранения фото')
+
+
+# @dp.message_handler(state='next_photo')
+# async def not_foto_handler(message: types.Message, state: FSMContext):
+#     # we are here if the second and next messages are not photos
+#     async with state.proxy() as data:
+#         print(5)
+#         # here you can do something with data dictionary with all photos
+#         for i in data:
+#             src = 'photo_user' + i.file_path
+#             with open(src, 'wb') as new_file:
+#                 new_file.write(i.file_path)
+#
+#             await bot.send_message(message.chat.id, "Пожалуй, я сохраню это")
+#             # file_path = aiogram.types.file.File
+#             # await bot.download_file(i.file_path, str(randint(1, 99999)))
+#             print(i)
+#         await bot.send_message(message.chat.id, text='Фото сохранено')
+#
+#     await state.finish()
 
 
 if __name__ == "__main__":
