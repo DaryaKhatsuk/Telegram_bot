@@ -192,21 +192,19 @@ async def get_photo(message: types.Message, state: FSMContext):
 
 @dp.message_handler(content_types=['photo'], state='next_photo')
 async def next_photo_handler(message: types.Message, state: FSMContext):
-    # we are here if the second and next messages are photos
 
     async with state.proxy() as data:
         data['photo_counter'] += 1
         photo_counter = data['photo_counter']
-        data[f'photo_{photo_counter}']=message.photo[-1]
+        data[f'photo_{photo_counter}'] = message.photo[-1]
+        print(data)
     await state.set_state('next_photo')
 
 
 @dp.message_handler(state='next_photo')
 async def not_foto_handler(message: types.Message, state: FSMContext):
-    # we are here if the second and next messages are not photos
     async with state.proxy() as data:
         print(5)
-        # here you can do something with data dictionary with all photos
         # for i in data:
         #     print(i)
         # await bot.download_file(destination=('photo_user'), aiogram.types.file.File(i))
