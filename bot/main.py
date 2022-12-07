@@ -163,7 +163,7 @@ async def rassilka(message):
 
 
 @dp.message_handler(content_types='text')
-async def get_message(message, state: FSMContext):
+async def get_message(message):
     if message.text == 'Inform':
         await bot.send_message(message.chat.id, text='Information!\n The bot is designed for learning!',
                                parse_mode='Markdown')
@@ -188,7 +188,6 @@ async def get_message(message, state: FSMContext):
 async def get_photo(message: types.Message, state: FSMContext):
     await state.update_data(photo_0=message.photo[-1], photo_counter=0)
     await state.set_state('next_photo')
-        # we are here if the second and next messages are photos
 
 
 @dp.message_handler(content_types=['photo'], state='next_photo')
@@ -198,36 +197,29 @@ async def next_photo_handler(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['photo_counter'] += 1
         photo_counter = data['photo_counter']
-        data[f'photo_{photo_counter}'] = message.photo[-1]
-        for i in data:
-            await bot.download_file(aiogram.types.file.File, i)
-            # src = 'photo_user' + i.file_path
-            print('win')
-            # with open(src, 'wb') as new_file:
-            #     new_file.write(i.file_path)
-            # await bot.send_message(message.chat.id, "Пожалуй, я сохраню это")
-    # await state.set_state('next_photo')
-    await bot.send_message(message.chat.id, text='Нажмите любую кнопку для сохранения фото')
+        data[f'photo_{photo_counter}']=message.photo[-1]
+    await state.set_state('next_photo')
 
 
-# @dp.message_handler(state='next_photo')
-# async def not_foto_handler(message: types.Message, state: FSMContext):
-#     # we are here if the second and next messages are not photos
-#     async with state.proxy() as data:
-#         print(5)
-#         # here you can do something with data dictionary with all photos
-#         for i in data:
-#             src = 'photo_user' + i.file_path
-#             with open(src, 'wb') as new_file:
-#                 new_file.write(i.file_path)
-#
-#             await bot.send_message(message.chat.id, "Пожалуй, я сохраню это")
-#             # file_path = aiogram.types.file.File
-#             # await bot.download_file(i.file_path, str(randint(1, 99999)))
-#             print(i)
-#         await bot.send_message(message.chat.id, text='Фото сохранено')
-#
-#     await state.finish()
+@dp.message_handler(state='next_photo')
+async def not_foto_handler(message: types.Message, state: FSMContext):
+    # we are here if the second and next messages are not photos
+    async with state.proxy() as data:
+        print(5)
+        # here you can do something with data dictionary with all photos
+        # for i in data:
+        #     print(i)
+        # await bot.download_file(destination=('photo_user'), aiogram.types.file.File(i))
+        # print('win')
+        with open('photo_user', 'wb') as new_file:
+            new_file.write(data)
+        await bot.send_message(message.chat.id, "Фото сохранено")
+        # await state.set_state('next_photo')
+        await bot.send_message(message.chat.id, text='Нажмите любую кнопку для сохранения фото')
+        # print(i)
+        # await bot.send_message(message.chat.id, text='Фото сохранено')
+
+    await state.finish()
 
 
 if __name__ == "__main__":
